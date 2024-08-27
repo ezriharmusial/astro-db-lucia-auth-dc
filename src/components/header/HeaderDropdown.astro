@@ -1,0 +1,31 @@
+---
+const { subitems, itemClass } = Astro.props
+const page = Astro.url.pathname
+let classItem = itemClass ? "[&>a]:" + itemClass : ""
+
+---
+
+<ul class={"sub-menu invisible absolute z-20 flex w-52 flex-col bg-white dark:bg-gray-800 py-5 text-sm font-bold opacity-0 shadow-2xl transition-all" +  classItem}>
+
+  {subitems && subitems.map(({ title = "", url = "", subitems = null }) =>
+
+    <li class:list={["px-7", {"relative [&>.sub-menu]:hover:visible [&>.sub-menu]:hover:animate-popper-pop-in [&>.sub-menu]:hover:opacity-100": subitems}]}>
+      <a
+        class:list={["flex items-center justify-between py-2 transition-colors",  {"text-accent": page == url, "text-primary hover:text-accent dark:text-white dark:hover:text-accent": page != url}]}
+        href={url}
+      >
+        {title}
+
+        {subitems &&
+          <svg role="img" class="h-2 w-2 fill-primary dark:fill-white">
+            <use xlink:href="/assets/img/yt1/sprite.svg#arrow-right"></use>
+          </svg>
+        }
+      </a>
+
+      {subitems &&
+        <Astro.self class="left-full -top-5" subitems={subitems} />
+      }
+    </li>
+  )}
+</ul>

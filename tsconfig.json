@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "extends": "astro/tsconfigs/strict"
+}

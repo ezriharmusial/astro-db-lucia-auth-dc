@@ -1,0 +1,23 @@
+---
+export const prerender = false;
+import Yt1 from "../../layouts/Yt1.astro"
+
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/login");
+}
+---
+
+<Yt1>
+  <section class="pt-14 pb-24 lg:pb-52 lg:pt-40">
+    <div class="container">
+      Welcome, {user.email}
+      <form method="Post" action="/api/account/logout">
+          <button type="submit" class="text-lg transition-all opacity-60 hover:opacity-100 hover:text-primary dark:hover:text-white">
+            Logout
+          </button>
+        </form>
+    </div>
+  </section>
+</Yt1>

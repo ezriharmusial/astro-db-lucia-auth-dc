@@ -1,0 +1,31 @@
+---
+import HeaderDropdown from "./HeaderDropdown.astro"
+
+const { root = "/", items } = Astro.props
+// const href = Astro.url.pathname
+let pathname = Astro.url.pathname
+---
+<!-- Navigation (Desktop) -->
+<ul class="hidden gap-x-7 xl:gap-x-10 text-sm font-bold lg:flex">
+  {items.map(({ title = "", url = "", subitems = null }) =>
+    <li
+      class:list={{"relative [&>.sub-menu]:hover:visible [&>.sub-menu]:hover:animate-popper-pop-in [&>.sub-menu]:hover:opacity-100": subitems}}
+    >
+      <a
+        class:list={["relative inline-flex items-center gap-x-2 leading-10 after:absolute after:bottom-[7px] after:left-0 after:h-[2px] after:bg-white after:transition-transform after:w-full",  {"after:origin-left afterafter:origin-left after:scale-x-100": pathname === url, "after:origin-right hover:after:origin-left after:scale-x-0 hover:after:scale-x-100": pathname !== url}]}
+        href={url}
+      >
+        {title}
+        {subitems &&
+          <svg role="img" class="h-2 w-2 rotate-90 fill-white">
+            <use xlink:href={root + "assets/img/yt1/sprite.svg#arrow-right"}></use>
+          </svg>
+        }
+      </a>
+      {subitems &&
+        <HeaderDropdown subitems={subitems}/>
+      }
+    </li>
+  )}
+</ul>
+<!-- Navigation (Desktop) / End -->

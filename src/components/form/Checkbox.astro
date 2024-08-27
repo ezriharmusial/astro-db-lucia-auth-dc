@@ -1,0 +1,15 @@
+---
+const { name, id, checkboxClass, label} = Astro.props
+---
+<label class="flex items-center gap-x-3 hover:cursor-pointer" for={name}>
+  <input
+    name={name}
+    id={id}
+    type="checkbox"
+    class={"border-base form-checkbox h-6 w-6 text-accent transition-all duration-150 hover:cursor-pointer focus:border-accent focus:bg-accent focus:ring-accent dark:border-white/10 dark:bg-gray-800 dark:checked:border-accent dark:checked:bg-accent dark:checked:ring-accent" +
+      checkboxClass}
+  />
+  <span
+    class="text-sm font-bold text-primary dark:text-white md:text-base md:leading-tight"
+  >{label}</span>
+</label>

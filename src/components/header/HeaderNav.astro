@@ -1,0 +1,12 @@
+---
+import HeaderLogo from "./HeaderLogo.astro";
+import HeaderNavDesktop from "./HeaderNavDesktop.astro";
+---
+<nav
+  class="flex min-h-[64px] items-center justify-between py-1 lg:min-h-[90px] lg:py-4"
+>
+  <HeaderLogo/>
+
+  <HeaderNavDesktop items={[{title: "Home", url: "/"}, {title: "Register", url: "/account/register"}, {title: "Login", url: "/account/login"}, {title: "account", url: "/account"}]}}/>
+
+</nav>

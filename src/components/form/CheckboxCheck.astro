@@ -1,0 +1,26 @@
+---
+const {name, id, checkboxCheckClass, isChecked} = Astro.props
+---
+<label class="relative" for={id}>
+  <input
+    name={name}
+    id={id}
+    type="radio"
+    class={"form-radio--square peer form-radio h-8 w-8 rounded-none border-none transition-all duration-150 checked:bg-none hover:cursor-pointer lg:h-8 lg:w-8 " + checkboxCheckClass}
+    checked={isChecked}
+  />
+  <span
+    class="absolute -right-1 -top-1 hidden h-4 w-4 items-center justify-center bg-white peer-checked:inline-flex peer-checked:text-primary dark:bg-gray-900 dark:peer-checked:text-white"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      class="h-[10px] w-[10px]"
+      fill="currentColor"
+    >
+      <path
+        d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"
+      ></path>
+    </svg>
+  </span>
+</label>

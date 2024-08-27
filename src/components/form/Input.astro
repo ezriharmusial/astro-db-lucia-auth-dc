@@ -1,0 +1,23 @@
+---
+
+const {width, size, inputClass, name, type, id, value, placeholder, notification} = Astro.props
+---
+<input
+  class:list={[
+    "group-[.is-success]:bg-input-success group-[.is-error]:border-danger group-[.is-error]:bg-input-invalid group-[.is-error]:text-danger group-[.is-success]:pr-16 group-[.is-invalid]:pr-16 border-base bg-[length:14px_14px,_46px_46px] bg-[position:right_26px_center,_right_10px_center] bg-no-repeat font-bold leading-8 tracking-tight text-primary transition-all duration-150 placeholder:font-normal placeholder:text-gray-500/60 focus:border-indigo-500 focus:outline-0 focus:ring-0 dark:border-white/10 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500/80 dark:focus:border-indigo-500"
+    + " " + inputClass + " " + width,
+    {
+      "w-full": !width,
+      "px-6 py-[13px]": size == "md",
+      "px-7 py-4": size != "md"
+    }
+    ]}
+  type={type}
+  name={name}
+  id={id}
+  value={value}
+  placeholder={placeholder}
+/>
+<p class="group-[.is-error]:block mt-2 hidden text-sm font-bold text-danger">
+  {notification}
+</p>

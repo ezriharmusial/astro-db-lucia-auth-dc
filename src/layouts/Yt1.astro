@@ -1,0 +1,19 @@
+---
+import HeaderNav from "@/components/header/HeaderNav.astro";
+import Base from "./Base.astro";
+---
+
+<Base>
+  <body class="container bg-slate-500">
+    <div class="antialiased tracking-tight font-base text-gray-500 text-base h-full bg-white dark:bg-gray-900 overflow-x-hidden">
+      <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper">
+        <header class="px-8 bg-slate-100">
+          <HeaderNav></HeaderNav>
+        </header>
+        <main id="main-content" class="grow lg:pt-0 p-8">
+          <slot />
+        </main>
+     </div>
+    </div>
+ </body>
+</Base>

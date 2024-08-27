@@ -1,0 +1,75 @@
+---
+import Checkbox from "../form/Checkbox.astro";
+import Input from "../form/Input.astro";
+---
+
+  <div
+    class="relative col-span-full -mt-20 mb-14 grid grid-cols-12 gap-x-0 bg-black/10 dark:bg-gray-800 shadow-3xl md:col-start-2 md:col-end-12 lg:col-start-3 lg:col-end-11 md:grid-cols-6 md:gap-x-6 xl:col-start-4 xl:col-end-10 lg:-mt-[200px] lg:mb-40 lg:gap-x-[30px]"
+  >
+    <div class="col-start-2 col-end-12 py-10 md:col-end-6 md:py-20">
+      <h2 class="font-bold text-2xl text-primary dark:text-white md:text-3.5xl mb-4 tracking-tight">Login</h2>
+      <div class="mb-8 md:mb-14 md:leading-normal md:text-lg tracking-tighter pr-2">
+        <p>If you don’t have an account, you can
+          <a class="text-accent font-bold hover:text-primary transition-colors" href="/account/register">register</a>
+          now in a few seconds!</p>
+      </div>
+
+      <!-- Default Form  -->
+      <form class="flex flex-col gap-y-7" method="post" action="/api/account/login">
+        <div>
+          <Input type="email" name="email" id="email" placeholder="Enter Email"  />
+        </div>
+        <div>
+          <Input type="password" name="password" id="password" placeholder="Enter Password"  />
+        </div>
+        <div class="flex justify-between flex-wrap gap-y-4">
+          <div>
+            <Checkbox name="rememberme" id="rememberme" label="Remember Me"  />
+          </div>
+          <div>
+            <a href="#" class="font-bold text-primary dark:text-white text-sm md:text-base md:leading-tight hover:text-accent dark:hover:text-accent transition-colors">Forgot Password?</a>
+          </div>
+        </div>
+        <div class="mt-3">
+          <input
+            class="block w-full bg-accent py-5 text-lg font-bold leading-normal tracking-tight text-white transition-colors hover:cursor-pointer hover:bg-accent/90"
+            type="submit"
+            value="Login Now!"
+          />
+        </div>
+      </form>
+      <!-- Default Form / End  -->
+
+      <!-- Social Form  -->
+      <div class="pt-8 hidden">
+        <div class="text-center font-bold text-primary mb-6 text-sm md:text-base dark:text-white">or login with your social account</div>
+        <div class="flex justify-between gap-x-5">
+          <a
+            href="#"
+            class="relative flex-1 flex h-16 items-center justify-center text-xs text-white transition-colors bg-social-facebook hover:bg-social-facebook/90"
+          >
+            <svg class="w-[18px] h-[18px]" fill="currentColor">
+              <use xlink:href="/assets/img/social-icons.svg#facebook"></use>
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="relative flex-1 flex h-16 items-center justify-center text-xs text-white transition-colors bg-social-twitter hover:bg-social-twitter/90"
+          >
+            <svg class="w-[18px] h-[18px]" fill="currentColor">
+              <use xlink:href="/assets/img/social-icons.svg#twitter"></use>
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="relative flex-1 flex h-16 items-center justify-center text-xs text-white transition-colors bg-social-youtube hover:bg-social-youtube/90"
+          >
+            <svg class="w-[18px] h-[18px]" fill="currentColor">
+              <use xlink:href="/assets/img/social-icons.svg#youtube"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <!-- Social Form / End  -->
+    </div>
+  </div>

@@ -2,7 +2,6 @@ import { defineConfig } from 'astro/config';
 import opengraphImages, { presets } from "astro-opengraph-images";
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-// import compress from 'astro-compress'; // TODO removed or replaced?
 import icon from "astro-icon";
 import fs from 'fs';
 import pageInsight from "astro-page-insight";
@@ -41,9 +40,7 @@ export const config = {
     },
   },
   output: 'hybrid',
-  adapter: netlify({
-      edgeMiddleware: true,
-  }),
+  adapter: netlify(),
 };
 
 // https://astro.build/config

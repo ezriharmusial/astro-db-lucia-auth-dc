@@ -1804,7 +1804,7 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-linux-s390x-gnu/-/rollup-linux-s390x-gnu-4.21.1.tgz#daa2b62a6e6f737ebef6700a12a93c9764e18583"
   integrity sha512-z/9rtlGd/OMv+gb1mNSjElasMf9yXusAxnRDrBaYB+eS1shFm6/4/xDH1SAISO5729fFKUkJ88TkGPRUh8WSAA==
 
-"@rollup/rollup-linux-x64-gnu@4.21.1":
+"@rollup/rollup-linux-x64-gnu@4.21.1", "@rollup/rollup-linux-x64-gnu@^4.21.1":
   version "4.21.1"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.21.1.tgz#790ae96118cc892464e9f10da358c0c8a6b9acdd"
   integrity sha512-kXQVcWqDcDKw0S2E0TmhlTLlUgAmMVqPrJZR+KpH/1ZaZhLSl23GZpQVmawBQGVhyP5WXIsIQ/zqbDBBYmxm5w==
@@ -8537,11 +8537,6 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
-
-typesafe-i18n@^5.26.2:
-  version "5.26.2"
-  resolved "https://registry.yarnpkg.com/typesafe-i18n/-/typesafe-i18n-5.26.2.tgz#d8e2ef67197c837cdd11ea2ec17f73af2591e9b4"
-  integrity sha512-2QAriFmiY5JwUAJtG7yufoE/XZ1aFBY++wj7YFS2yo89a3jLBfKoWSdq5JfQYk1V2BS7V2c/u+KEcaCQoE65hw==
 
 typesafe-path@^0.2.2:
   version "0.2.2"

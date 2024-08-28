@@ -1,14 +1,17 @@
 import { lucia } from '@/auth';
 import { Argon2id } from 'oslo/password';
-import { db, User, eq } from 'astro:db';
+import { db, User, eq, isDbError } from 'astro:db';
 import type { APIContext } from 'astro';
 
 export const prerender = false;
 
 export async function POST(context: APIContext): Promise<Response> {
-  const formData = await context.request.formData();
-  const email = (formData.get('email') as string).trim();
 
+  // Get Formdata
+  const formData = await context.request.formData();
+
+  // validate email
+  const email = (formData.get('email') as string).trim();
   if (
     typeof email !== 'string' ||
     email.length < 3 ||
@@ -20,8 +23,8 @@ export async function POST(context: APIContext): Promise<Response> {
     });
   }
 
+  // validate password
   const password = formData.get('password');
-
   if (
     typeof password !== 'string' ||
     password.length < 6 ||
@@ -32,36 +35,45 @@ export async function POST(context: APIContext): Promise<Response> {
     });
   }
 
-  const existingUser = await db
-    .select()
-    .from(User)
-    .where(eq(User.email, email.toLowerCase()))
-    .get();
+  let existingUser: any
+  try {
+    // Check if user exists
+    existingUser = await db
+      .select()
+      .from(User)
+      .where(eq(User.email, email.toLowerCase()))
+      .get();
+    if (!existingUser) {
+      return new Response('Incorrect username', {
+        status: 400,
+      });
+    }
 
-  if (!existingUser) {
-    return new Response('Incorrect username or password', {
-      status: 400,
-    });
+    // Check if password is correct
+    const validPassword = await new Argon2id().verify( existingUser.hashed_password, password);
+    if (!validPassword) {
+      return new Response('Incorrect password', {
+        status: 400,
+      });
+    }
+
+    // When all is correct, Setsession Cookie with Lucia
+    console.log('VALIDATION CORRECT!!! YEAH!! 😃')
+    const session = await lucia.createSession(existingUser.id, {});
+    const sessionCookie = lucia.createSessionCookie(session.id);
+    context.cookies.set(
+      sessionCookie.name,
+      sessionCookie.value,
+      sessionCookie.attributes,
+    );
+
+  } catch (e) {
+    if (isDbError(e)) {
+      return new Response(`Could not finalize login because of db error\n\n${e.message}`, { status: 400 });
+    }
+    return new Response('An unexpected error occurred', { status: 500 });
   }
 
-  const validPassword = await new Argon2id().verify(
-    existingUser.hashed_password,
-    password,
-  );
-
-  if (!validPassword) {
-    return new Response('Incorrect username or password', {
-      status: 400,
-    });
-  }
-
-  const session = await lucia.createSession(existingUser.id, {});
-  const sessionCookie = lucia.createSessionCookie(session.id);
-  context.cookies.set(
-    sessionCookie.name,
-    sessionCookie.value,
-    sessionCookie.attributes,
-  );
-
+  // If all went well, redirect to /account
   return context.redirect('/account');
 }

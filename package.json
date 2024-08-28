@@ -21,6 +21,7 @@
     "@fontsource/roboto": "^5.0.13",
     "@iconify-json/ion": "^1.1.18",
     "@iconify-json/mdi": "^1.1.67",
+    "@netlify/blobs": "^8.0.1",
     "@netlify/functions": "^2.8.1",
     "@node-rs/argon2": "^1.8.3",
     "@rollup/rollup-linux-x64-gnu": "^4.21.1",
